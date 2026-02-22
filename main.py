@@ -42,7 +42,7 @@ plt.legend()
 plt.savefig(str(charts / f'{feature}_distribution_hd.png'))
 plt.show()
 
-
+# Third graph, comparing maximum heart rate to the ST Depression in participants
 df_no_disease = df[df['target'] == 0]
 df_disease = df[df['target'] == 1]
 
