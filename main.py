@@ -3,6 +3,26 @@
 ### Mini Project 2
 
 import pandas as pd
+import matplotlib.pyplot as plt
+from pathlib import Path
+
+# Create charts folder if it doesn't already exist
+charts = Path(r'charts')
+if not charts.exists():
+    Path(r'charts').mkdir()
+
+df = pd.read_csv('./data/heart.csv', index_col=0)
+gender = df[['sex']].value_counts()
+
+males = gender[1]
+females = gender[0]
+
+plt.bar([1, 0], [males, females], align='center', color=['b', 'm'])
+plt.xlabel('Gender (Male = 1, Female = 0)')
+plt.ylabel('Count')
+plt.title('Number of Participants by Gender')
+plt.savefig(str(charts / 'gender_count.png'))
+plt.show()
 
 
 
