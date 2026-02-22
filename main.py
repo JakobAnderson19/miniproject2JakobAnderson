@@ -43,6 +43,19 @@ plt.savefig(str(charts / f'{feature}_distribution_hd.png'))
 plt.show()
 
 
+df_no_disease = df[df['target'] == 0]
+df_disease = df[df['target'] == 1]
+
+ax = df_no_disease.plot.scatter(x='thalach', y='oldpeak', color='blue', label='No Disease', alpha=0.7)
+df_disease.plot.scatter(x='thalach', y='oldpeak', color='red', label='Disease', alpha=0.7, ax=ax)
+
+plt.xlabel('Max Heart Rate Achieved (thalach)')
+plt.ylabel('ST Depression (oldpeak)')
+plt.title('Heart Disease: Max Heart Rate vs ST Depression')
+plt.savefig(str(charts / f'heartrate_stdepression_distribution_hd.png'))
+plt.show()
+
+
 
 
 
