@@ -12,6 +12,7 @@ if not charts.exists():
     Path(r'charts').mkdir()
 
 df = pd.read_csv('./data/heart.csv', index_col=0)
+
 gender = df[['sex']].value_counts()
 
 males = gender[1]
@@ -23,6 +24,24 @@ plt.ylabel('Count')
 plt.title('Number of Participants by Gender')
 plt.savefig(str(charts / 'gender_count.png'))
 plt.show()
+
+# Second graph, comparing maximum heart rate to heart disease in participants
+feature = 'thalach'
+
+disease = df[df['target'] == 1][feature]
+no_disease = df[df['target'] == 0][feature]
+
+plt.figure(figsize=(8,6))
+plt.hist(no_disease, bins=50, alpha=0.6, label='No Disease', color='blue')
+plt.hist(disease, bins=50, alpha=0.6, label='Disease', color='red')
+
+plt.xlabel(feature)
+plt.ylabel('Number of Participants')
+plt.title(f'Maximum Heart Rate Distribution by Heart Disease Status')
+plt.legend()
+plt.savefig(str(charts / f'{feature}_distribution_hd.png'))
+plt.show()
+
 
 
 
